@@ -14,16 +14,35 @@ public class TransportationAPI {
 
   @RequestMapping("/vehicle/car")
   public Vehicle getCar(@RequestParam int id) {
-    return new Car(id, new MakeAndModel("Volvo", "V70", "2003"));
+    return Car.builder()
+        .id(id)
+        .makeAndModel(MakeAndModel.builder()
+            .producer("Volvo")
+            .model("V70")
+            .year("2003").build())
+        .build();
   }
 
   @RequestMapping("/vehicle/bike")
   public Vehicle getBike(@RequestParam int id) {
-    return new Bike(id, new MakeAndModel("Specialized", "Tarmac", "2018"), true, 105);
+    return Bike.builder()
+        .id(id)
+        .makeAndModel(MakeAndModel.builder()
+            .producer("Specialized")
+            .model("Tarmac")
+            .year("2018").build())
+        .teamSponsor(true)
+        .grandTourWins(105)
+        .build();
   }
 
   @RequestMapping("/vehicle/truck")
   public Vehicle getTruck(@RequestParam int id) {
-    return new Truck(id, new MakeAndModel("Scania", "R-Highline", "2019"));
+    return Truck.builder().id(id)
+        .makeAndModel(MakeAndModel.builder()
+            .producer("Scania")
+            .model("R-Highline")
+            .year("2019").build())
+        .build();
   }
 }
